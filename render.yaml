@@ -1,10 +1,22 @@
 services:
 - type: web
+  name: minio-proxy
+  runtime: image
+  image:
+    url: docker.io/renderco/minio-nginx-proxy:latest
+  autoDeploy: false
+  envVars:
+  - key: MINIO_INTERNAL_HOSTNAME
+    fromService:
+      name: minio
+      type: pserv
+      property: host
+- type: pserv
   name: minio
-  healthCheckPath: /minio/health/live
-  env: docker
-  dockerfilePath: ./Dockerfile
-  dockerContext: .
+  runtime: image
+  dockerCommand: minio server /data --console-address ":9090"
+  image:
+    url: docker.io/minio/minio:RELEASE.2023-08-04T17-40-21Z.hotfix.04968f7ec
   autoDeploy: false
   disk:
     name: data
