@@ -33,7 +33,7 @@ server {
       proxy_set_header Connection "";
       chunked_transfer_encoding off;
 
-      proxy_pass https://minio_s3; # This uses the upstream directive definition to load balance
+      proxy_pass http://minio_s3; # This uses the upstream directive definition to load balance
    }
 
    location /minio/ui {
@@ -56,6 +56,6 @@ server {
 
       chunked_transfer_encoding off;
 
-      proxy_pass https://minio_console; # This uses the upstream directive definition to load balance
+      proxy_pass http://minio_console; # This uses the upstream directive definition to load balance
    }
 }

@@ -14,7 +14,7 @@ services:
 - type: pserv
   name: minio
   runtime: image
-  dockerCommand: minio server /data --console-address ":9090"
+  dockerCommand: minio server /data --console-address :9090
   image:
     url: docker.io/minio/minio:RELEASE.2023-08-04T17-40-21Z.hotfix.04968f7ec
   autoDeploy: false
